@@ -1,0 +1,9 @@
+take/eclipse
+take/jar_files
+take/jdk
+take/wildfly-10.1.0.Final
+take/*.bat
+
+take/workspace/.metadata
+take/workspace/.recommenders
+take/workspace/takeclient
