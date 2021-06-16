@@ -11,6 +11,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 
 @Path("/discipline")
 @Consumes({ "application/json" })
@@ -40,8 +41,8 @@ public class DisciplineREST {
 	}
 	
 	@GET
-	@Path("/{name}")
-	public Discipline findByName(@PathParam("name") String name) {
+	@Path("/name")
+	public Discipline findByName(@QueryParam("name") String name) {
 		Discipline discipline = bean.findByName(name);
 		return discipline;
 	}

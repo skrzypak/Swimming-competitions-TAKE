@@ -3,8 +3,10 @@ package pl.course.swimming.competitions;
 import java.io.Serializable;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +15,7 @@ import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.sun.istack.internal.NotNull;
 
 import java.lang.IllegalArgumentException;
 
@@ -23,7 +26,7 @@ public class Result implements Serializable {
 	private static final long serialVersionUID = 4L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idc;
     
     private int timeObtainedSeconds;
@@ -32,16 +35,20 @@ public class Result implements Serializable {
     @Column(nullable=false)
     private int place;
     
-    @ManyToOne
+    
+    @ManyToOne(optional = false, fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "fk_swimmer")
+    @NotNull
     private Swimmer swimmer;
     
-    @ManyToOne
+    @ManyToOne(optional = false, fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "fk_discipline")
+    @NotNull
     private Discipline discipline;
     
-    @ManyToOne
+    @ManyToOne(optional = false, fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "fk_competition")
+    @NotNull
     private Competition competition;
 
 	public long getIdc() {

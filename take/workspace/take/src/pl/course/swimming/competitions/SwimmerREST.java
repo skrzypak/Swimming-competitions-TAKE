@@ -11,6 +11,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 
 @Path("/swimmer")
 @Consumes({ "application/json" })
@@ -41,10 +42,10 @@ public class SwimmerREST {
 	}
 	
 	@GET
-	@Path("/{name}&{surname}")
+	@Path("/fullname")
 	public List<Swimmer> findAllByFullName(
-			@PathParam("name") String name,
-			@PathParam("surname") String surname) {
+			@QueryParam("name") String name,
+			@QueryParam("surname") String surname) {
 		List<Swimmer> swimmers = bean.findAllByFullName(name, surname);
 		return swimmers;
 	}

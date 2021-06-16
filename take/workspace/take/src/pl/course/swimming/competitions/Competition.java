@@ -3,6 +3,7 @@ package pl.course.swimming.competitions;
 import java.io.Serializable;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -26,7 +27,7 @@ public class Competition implements Serializable {
 	private static final long serialVersionUID = 2L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idc;
     
     @Basic
@@ -46,7 +47,7 @@ public class Competition implements Serializable {
     private LocalDateTime dateTime;
     
     @JsonIgnore
-    @OneToMany(mappedBy = "competition", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "competition", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<Result> results = new HashSet<Result>();
 
     public long getIdc() {

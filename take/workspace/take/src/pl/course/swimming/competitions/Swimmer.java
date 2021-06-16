@@ -3,6 +3,7 @@ package pl.course.swimming.competitions;
 import java.io.Serializable;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -26,7 +27,7 @@ public class Swimmer implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idc;
 	
 	@Basic
@@ -54,7 +55,7 @@ public class Swimmer implements Serializable {
 	private String phoneNumber;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "swimmer", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "swimmer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<Result> results  = new HashSet<Result>();
 	
 	public long getIdc() {

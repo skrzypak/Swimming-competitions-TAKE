@@ -41,6 +41,20 @@ public class ResultREST {
 		return result;
 	}
 	
+	@GET
+	@Path("/swimmer/{idc}")
+	public List<Result> getAllResultsBySwimmer(@PathParam("idc") long idc) {
+		List<Result> results = bean.getAllResultsBySwimmer(idc);
+		return results;
+	}
+	
+	@GET
+	@Path("/competition/{idc}")
+	public List<Result> getAllResultsByCompetition(@PathParam("idc") long idc) {
+		List<Result> results = bean.getAllResultsByCompetition(idc);
+		return results;
+	}
+	
 
 	@PUT
 	public String update(Result result) {

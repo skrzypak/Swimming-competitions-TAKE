@@ -7,3 +7,7 @@ take/*.bat
 take/workspace/.metadata
 take/workspace/.recommenders
 take/workspace/takeclient
+take/workspace/take/.classpath
+take/workspace/take/build.xml
+take/workspace/take/dist
+take/workspace/take/WebContent

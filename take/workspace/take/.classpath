@@ -6,8 +6,9 @@
 	<classpathentry kind="lib" path="lib/jboss-ejb-api_3.1_spec-1.0.1.Final.jar"/>
 	<classpathentry kind="lib" path="lib/hibernate-jpa-2.0-api-1.0.1.Final.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/Xboot/Downloads/take/jar_files/jackson-annotations-2.12.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Xboot/Downloads/take/jar_files/jackson-core-2.12.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Xboot/Downloads/take/jar_files/jackson-databind-2.12.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Xboot/Code/Swimming-competitions-TAKE/take/jar_files/jackson-annotations-2.12.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Xboot/Code/Swimming-competitions-TAKE/take/jar_files/jackson-core-2.12.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Xboot/Code/Swimming-competitions-TAKE/take/jar_files/jackson-databind-2.12.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Xboot/Code/Swimming-competitions-TAKE/take/jar_files/jackson-datatype-hibernate4-2.12.3.jar"/>
 	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>

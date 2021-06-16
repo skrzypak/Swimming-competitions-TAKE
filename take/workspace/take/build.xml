@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <project name="take" default="deploy">
-	<property name="jboss.home" value="C:/Users/Xboot/Downloads/take/wildfly-10.1.0.Final" />
+	<property name="jboss.home" value="C:\Users\Xboot\Code\Swimming-competitions-TAKE\take\wildfly-10.1.0.Final" />
 
 	<path id="compile.classpath">
 		<fileset dir="WebContent/WEB-INF/lib">
