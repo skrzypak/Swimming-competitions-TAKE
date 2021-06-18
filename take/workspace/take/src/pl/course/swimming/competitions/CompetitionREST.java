@@ -41,8 +41,8 @@ public class CompetitionREST {
 	
 	@GET
 	@Path("/{name}")
-	public List<Competition> findAllByName(@PathParam("name") String name) {
-		List<Competition> competitions = bean.findAllByName(name);
+	public List<Competition> findByName(@PathParam("name") String name) {
+		List<Competition> competitions = bean.findByName(name);
 		return competitions;
 	}
 	

@@ -11,8 +11,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-
-
+import javax.ws.rs.QueryParam;
 
 @Path("/result")
 @Consumes({ "application/json" })
@@ -27,12 +26,6 @@ public class ResultREST {
 		bean.create(resultDto);
 		return "result created!";
 	}
-	
-	@GET
-	public List<Result> get() {
-		List<Result> results = bean.get();
-		return results;
-	}
 
 	@GET
 	@Path("/{idc}")
@@ -42,20 +35,37 @@ public class ResultREST {
 	}
 	
 	@GET
-	@Path("/swimmer/{idc}")
-	public List<Result> getAllResultsBySwimmer(@PathParam("idc") long idc) {
-		List<Result> results = bean.getAllResultsBySwimmer(idc);
+	@Path("/fetch/3")
+	public List<Result> get(
+			@QueryParam("swimmerIdc") Long swimmerIdc,
+			@QueryParam("disciplineIdc") Long disciplineIdc,
+			@QueryParam("competitonIdc") Long competitionIdc
+	) {
+		List<Result> results = bean.fetchByAll(swimmerIdc, disciplineIdc, competitionIdc);
 		return results;
 	}
 	
 	@GET
-	@Path("/competition/{idc}")
-	public List<Result> getAllResultsByCompetition(@PathParam("idc") long idc) {
-		List<Result> results = bean.getAllResultsByCompetition(idc);
+	@Path("/fetch/swimmer/{idc}")
+	public List<Result> getBySwimmer(@PathParam("idc") Long idc) {
+		List<Result> results = bean.fetchBySwimmerIdc(idc);
 		return results;
 	}
 	
-
+	@GET
+	@Path("/fetch/discipline/{idc}")
+	public List<Result> getByDiscipline(@PathParam("idc") Long idc) {
+		List<Result> results = bean.fetchByDisciplineIdc(idc);
+		return results;
+	}
+	
+	@GET
+	@Path("/fetch/competition/{idc}")
+	public List<Result> getByCompetition(@PathParam("idc") Long idc) {
+		List<Result> results = bean.fetchCompetitonIdc(idc);
+		return results;
+	}
+	
 	@PUT
 	public String update(Result result) {
 		try {

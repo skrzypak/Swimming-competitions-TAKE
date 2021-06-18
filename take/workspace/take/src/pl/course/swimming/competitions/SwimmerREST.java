@@ -43,10 +43,10 @@ public class SwimmerREST {
 	
 	@GET
 	@Path("/fullname")
-	public List<Swimmer> findAllByFullName(
+	public List<Swimmer> findByFullName(
 			@QueryParam("name") String name,
 			@QueryParam("surname") String surname) {
-		List<Swimmer> swimmers = bean.findAllByFullName(name, surname);
+		List<Swimmer> swimmers = bean.findByFullName(name, surname);
 		return swimmers;
 	}
 	

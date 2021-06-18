@@ -22,7 +22,7 @@ import java.util.Set;
 
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idc")
-public class Swimmer implements Serializable {
+public class Swimmer implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -55,9 +55,22 @@ public class Swimmer implements Serializable {
 	private String phoneNumber;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "swimmer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "swimmer", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<Result> results  = new HashSet<Result>();
 	
+	public Swimmer() {}
+	
+	public Swimmer(Swimmer swimmer) {
+		this.idc = swimmer.getIdc();
+		this.name = swimmer.getName();
+		this.surname = swimmer.getSurname();
+		this.gender = swimmer.getGender();
+		this.age = swimmer.getAge();
+		this.town = swimmer.getTown();
+		this.phoneNumber = swimmer.getPhoneNumber();
+		this.results = swimmer.getResults();
+	}
+
 	public long getIdc() {
 		return this.idc;
 	}
@@ -127,6 +140,64 @@ public class Swimmer implements Serializable {
 	public void addResult(Result result) {
 		this.results.add(result);
 		result.setSwimmer(this);
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + age;
+		result = prime * result + gender;
+		result = prime * result + (int) (idc ^ (idc >>> 32));
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
+		result = prime * result + ((results == null) ? 0 : results.hashCode());
+		result = prime * result + ((surname == null) ? 0 : surname.hashCode());
+		result = prime * result + ((town == null) ? 0 : town.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Swimmer other = (Swimmer) obj;
+		if (age != other.age)
+			return false;
+		if (gender != other.gender)
+			return false;
+		if (idc != other.idc)
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (phoneNumber == null) {
+			if (other.phoneNumber != null)
+				return false;
+		} else if (!phoneNumber.equals(other.phoneNumber))
+			return false;
+		if (results == null) {
+			if (other.results != null)
+				return false;
+		} else if (!results.equals(other.results))
+			return false;
+		if (surname == null) {
+			if (other.surname != null)
+				return false;
+		} else if (!surname.equals(other.surname))
+			return false;
+		if (town == null) {
+			if (other.town != null)
+				return false;
+		} else if (!town.equals(other.town))
+			return false;
+		return true;
 	}
 
 	@Override

@@ -40,6 +40,15 @@ public class Discipline implements Serializable {
     @OneToMany(mappedBy = "discipline", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<Result> results  = new HashSet<Result>();
 
+	public Discipline() {}
+	
+	public Discipline(Discipline discipline) {
+		this.idc = discipline.getIdc();
+		this.name = discipline.getName();
+		this.distanceInMeters = discipline.getDistanceInMeters();
+		this.results = discipline.getResults();
+	}
+
 	public long getIdc() {
 		return idc;
 	}
@@ -72,6 +81,43 @@ public class Discipline implements Serializable {
 	public void addResult(Result result) {
 		this.results.add(result);
 		result.setDiscipline(this);
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + distanceInMeters;
+		result = prime * result + (int) (idc ^ (idc >>> 32));
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((results == null) ? 0 : results.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Discipline other = (Discipline) obj;
+		if (distanceInMeters != other.distanceInMeters)
+			return false;
+		if (idc != other.idc)
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (results == null) {
+			if (other.results != null)
+				return false;
+		} else if (!results.equals(other.results))
+			return false;
+		return true;
 	}
 
 	@Override

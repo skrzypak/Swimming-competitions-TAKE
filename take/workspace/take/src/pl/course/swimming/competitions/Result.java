@@ -35,21 +35,31 @@ public class Result implements Serializable {
     @Column(nullable=false)
     private int place;
     
-    
-    @ManyToOne(optional = false, fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_swimmer")
     @NotNull
     private Swimmer swimmer;
     
-    @ManyToOne(optional = false, fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_discipline")
     @NotNull
     private Discipline discipline;
     
-    @ManyToOne(optional = false, fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_competition")
     @NotNull
     private Competition competition;
+    
+    public Result() {}
+    
+	public Result(Result result) {
+		this.idc = result.getIdc();
+		this.timeObtainedSeconds = result.getTimeObtainedSeconds();
+		this.place = result.getPlace();
+		this.swimmer = new Swimmer(result.getSwimmer());
+		this.discipline = new Discipline(result.getDiscipline());
+		this.competition = new Competition(result.getCompetition());
+	}
 
 	public long getIdc() {
         return idc;
@@ -104,6 +114,52 @@ public class Result implements Serializable {
 
         throw new IllegalArgumentException("Place must be greater than 0");
     }
+    
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((competition == null) ? 0 : competition.hashCode());
+		result = prime * result + ((discipline == null) ? 0 : discipline.hashCode());
+		result = prime * result + (int) (idc ^ (idc >>> 32));
+		result = prime * result + place;
+		result = prime * result + ((swimmer == null) ? 0 : swimmer.hashCode());
+		result = prime * result + timeObtainedSeconds;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Result other = (Result) obj;
+		if (competition == null) {
+			if (other.competition != null)
+				return false;
+		} else if (!competition.equals(other.competition))
+			return false;
+		if (discipline == null) {
+			if (other.discipline != null)
+				return false;
+		} else if (!discipline.equals(other.discipline))
+			return false;
+		if (idc != other.idc)
+			return false;
+		if (place != other.place)
+			return false;
+		if (swimmer == null) {
+			if (other.swimmer != null)
+				return false;
+		} else if (!swimmer.equals(other.swimmer))
+			return false;
+		if (timeObtainedSeconds != other.timeObtainedSeconds)
+			return false;
+		return true;
+	}
 
 	@Override
 	public String toString() {

@@ -49,8 +49,19 @@ public class Competition implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "competition", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<Result> results = new HashSet<Result>();
+    
+    public Competition() {}
+    
+    public Competition(Competition competition) {
+		this.idc = competition.getIdc();
+		this.name = competition.getName();
+		this.organizer = competition.getOrganizer();
+		this.place = competition.getPlace();
+		this.dateTime = competition.getDateTime();
+		this.results = competition.getResults();
+	}
 
-    public long getIdc() {
+	public long getIdc() {
         return idc;
     }
 
@@ -93,6 +104,58 @@ public class Competition implements Serializable {
 	public void addResult(Result result) {
 		this.results.add(result);
 		result.setCompetition(this);
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((dateTime == null) ? 0 : dateTime.hashCode());
+		result = prime * result + (int) (idc ^ (idc >>> 32));
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((organizer == null) ? 0 : organizer.hashCode());
+		result = prime * result + ((place == null) ? 0 : place.hashCode());
+		result = prime * result + ((results == null) ? 0 : results.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Competition other = (Competition) obj;
+		if (dateTime == null) {
+			if (other.dateTime != null)
+				return false;
+		} else if (!dateTime.equals(other.dateTime))
+			return false;
+		if (idc != other.idc)
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (organizer == null) {
+			if (other.organizer != null)
+				return false;
+		} else if (!organizer.equals(other.organizer))
+			return false;
+		if (place == null) {
+			if (other.place != null)
+				return false;
+		} else if (!place.equals(other.place))
+			return false;
+		if (results == null) {
+			if (other.results != null)
+				return false;
+		} else if (!results.equals(other.results))
+			return false;
+		return true;
 	}
 
 	@Override

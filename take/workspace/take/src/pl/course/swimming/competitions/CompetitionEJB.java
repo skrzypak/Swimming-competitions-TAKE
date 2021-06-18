@@ -22,7 +22,7 @@ public class CompetitionEJB {
 		manager.remove(competition);
 	}
 
-	public List<Competition> findAllByName(String name) {
+	public List<Competition> findByName(String name) {
 		Query q = manager.createQuery("select c from Competition c where c.name = :name");
 		q.setParameter("name", name);
 		@SuppressWarnings("unchecked")

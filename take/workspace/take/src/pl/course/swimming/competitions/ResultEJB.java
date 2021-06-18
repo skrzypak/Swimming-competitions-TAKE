@@ -1,5 +1,6 @@
 package pl.course.swimming.competitions;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -46,6 +47,59 @@ public class ResultEJB {
 		
 		manager.persist(result);
 	}
+	
+	public List<Result> fetchByAll(Long swimmerIdc, Long disciplineIdc, Long competitionIdc)
+	{
+		return this.fetch(swimmerIdc, disciplineIdc, competitionIdc);
+	}
+	
+	public List<Result> fetchBySwimmerIdc(Long idc) {
+		return this.fetch(idc, null, null);
+	}
+
+	public List<Result> fetchByDisciplineIdc(Long idc) {
+		return this.fetch(null, idc, null);
+	}
+
+	public List<Result> fetchCompetitonIdc(Long idc) {
+		return this.fetch(null, null, idc);
+	}
+	
+	private List<Result> fetch(Long swimmerIdc, Long disciplineIdc, Long competitionIdc) {
+		
+		StringBuffer query = new StringBuffer("select r.idc from Result r");
+		
+		if (swimmerIdc != null) {
+			query.append(" INNER JOIN r.swimmer s on s.idc = " + swimmerIdc);
+		}
+		
+		if (disciplineIdc != null) {
+			query.append(" INNER JOIN r.discipline d on d.idc = " + disciplineIdc);
+		}
+		
+		if (competitionIdc != null) {
+			query.append( " INNER JOIN r.competition c on c.idc = " + competitionIdc);
+		}
+		
+		Query q = manager.createQuery(query.toString(), Long.class);
+		
+		@SuppressWarnings("unchecked")
+		List<Long> idcs = q.getResultList();
+		
+		List<Result> list = new LinkedList<Result>();
+		
+		for (Long idc : idcs) {
+			Result result = manager.getReference(Result.class, idc);
+			list.add(new Result(result));
+		}
+		
+		return list;
+	}
+	
+	public Result find(long idc) {
+		Result r = manager.find(Result.class, idc);
+		return r;
+	}
 
 	public void delete(long idc) {
 		Result result = manager.find(Result.class, idc);
@@ -54,40 +108,7 @@ public class ResultEJB {
 		
 		manager.remove(result);
 	}
-
-	public Result find(long idc) {
-		Result r = manager.find(Result.class, idc);
-		return r;
-	}
-
-	// TODO: Incorrect return up 1 (only ID)
 	
-	public List<Result> get() {
-		Query q = manager.createQuery("select r from Result r");
-		@SuppressWarnings("unchecked")
-		List<Result> list = q.getResultList();
-		
-		return list;
-	}
-	
-	public List<Result> getAllResultsBySwimmer(long idc) {
-		Query q = manager.createQuery("select r from Result r INNER JOIN r.swimmer s where s.idc = :idc");
-		q.setParameter("idc", idc);
-		
-		@SuppressWarnings("unchecked")
-		List<Result> list = q.getResultList();
-		return list;
-	}
-	
-	public List<Result> getAllResultsByCompetition(long idc) {
-		Query q = manager.createQuery("select r from Result r INNER JOIN r.competition c where c.idc = :idc");
-		q.setParameter("idc", idc);
-		
-		@SuppressWarnings("unchecked")
-		List<Result> list = q.getResultList();
-		return list;
-	}
-
 	public void update(Result result) {
 		result = manager.merge(result);
 	}

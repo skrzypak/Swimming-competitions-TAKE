@@ -22,7 +22,7 @@ public class SwimmerEJB {
 		manager.remove(swimmer);
 	}
 
-	public List<Swimmer> findAllByFullName(String name, String surname) {
+	public List<Swimmer> findByFullName(String name, String surname) {
 		Query q = manager.createQuery("select s from Swimmer s where s.name = :name and s.surname = :surname");
 		q.setParameter("name", name);
 		q.setParameter("surname", surname);
