@@ -1,4 +1,4 @@
-package pl.course.swimming.competitions;
+package pl.course.swimming.competitions.rest;
 
 import java.util.List;
 
@@ -12,6 +12,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+
+import pl.course.swimming.competitions.ejb.DisciplineEJB;
+import pl.course.swimming.competitions.model.Discipline;
 
 @Path("/discipline")
 @Consumes({ "application/json" })

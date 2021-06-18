@@ -1,4 +1,4 @@
-package pl.course.swimming.competitions;
+package pl.course.swimming.competitions.ejb;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -8,7 +8,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import pl.course.swimming.competitions.dto.ResultDto;
 import pl.course.swimming.competitions.exceptions.IdNotFoundException;
+import pl.course.swimming.competitions.model.Competition;
+import pl.course.swimming.competitions.model.Discipline;
+import pl.course.swimming.competitions.model.Result;
+import pl.course.swimming.competitions.model.Swimmer;
 
 @Stateless
 public class ResultEJB {

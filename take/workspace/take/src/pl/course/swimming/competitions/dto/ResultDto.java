@@ -1,4 +1,4 @@
-package pl.course.swimming.competitions;
+package pl.course.swimming.competitions.dto;
 
 public class ResultDto {
 	

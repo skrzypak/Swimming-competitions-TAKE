@@ -1,4 +1,4 @@
-package pl.course.swimming.competitions;
+package pl.course.swimming.competitions.ejb;
 
 import java.util.List;
 
@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import pl.course.swimming.competitions.exceptions.DuplicatException;
+import pl.course.swimming.competitions.model.Discipline;
 
 @Stateless
 public class DisciplineEJB {

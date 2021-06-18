@@ -1,4 +1,4 @@
-package pl.course.swimming.competitions;
+package pl.course.swimming.competitions.model;
 
 import java.io.Serializable;
 import java.util.HashSet;
