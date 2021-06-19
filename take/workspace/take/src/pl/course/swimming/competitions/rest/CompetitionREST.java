@@ -13,6 +13,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.ext.Provider;
 
 import pl.course.swimming.competitions.ejb.CompetitionEJB;
@@ -46,7 +47,7 @@ public class CompetitionREST {
 			return Response.ok(competitions).build();
 		}
 		
-		return Response.noContent().build();
+		return Response.status(Status.NOT_FOUND).build();
 	}
 
 	@GET
@@ -58,7 +59,7 @@ public class CompetitionREST {
 			return Response.ok(competition).build();
 		}
 		
-		return Response.noContent().build();
+		return Response.status(Status.NOT_FOUND).build();
 	}
 	
 	@GET
@@ -70,14 +71,14 @@ public class CompetitionREST {
 			return Response.ok(competitions).build();
 		}
 		
-		return Response.noContent().build();
+		return Response.status(Status.NOT_FOUND).build();
 	}
 	
 
 	@PUT
 	public Response update(Competition competition) {
 		bean.update(competition);
-		return Response.ok().build();
+		return Response.noContent().build();
 	}
 
 
@@ -85,6 +86,6 @@ public class CompetitionREST {
 	@Path("/{idc}")
 	public Response delete(@PathParam("idc") long idc) {
 		bean.delete(idc);
-		return Response.ok().build();
+		return Response.noContent().build();
 	}
 }

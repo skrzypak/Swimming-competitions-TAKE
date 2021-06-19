@@ -45,7 +45,7 @@ public class Swimmer implements Serializable{
 	
 	@Basic
 	@Column(nullable = false)
-	private byte gender;
+	private Character gender;
 	
 	@Basic
 	@Column(nullable = false)
@@ -96,12 +96,12 @@ public class Swimmer implements Serializable{
 		this.surname = surname;
 	}
 	
-	public byte getGender() {
+	public Character getGender() {
 		return this.gender;
 	}
 	
-	public void set(byte gender) {
-		if (gender == 'M' || gender == 'W') {
+	public void set(Character gender) {
+		if (gender.equals("M") || gender.equals("M")) {
 			this.gender = gender;
 			return;
 		}
@@ -145,6 +145,14 @@ public class Swimmer implements Serializable{
 	public void addResult(Result result) {
 		this.results.add(result);
 		result.setSwimmer(this);
+	}
+	
+	public void validate() {
+		if(this.age < 0)
+			throw new IllegalArgumentException("Age must be greather than 0");
+		
+		if (!this.gender.equals("M") && !this.gender.equals("M")) 
+			throw new IllegalArgumentException("Invalid gender value {M, W}");
 	}
 
 	@Override

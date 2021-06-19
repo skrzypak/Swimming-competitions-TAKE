@@ -27,6 +27,7 @@ public class SwimmerEJB {
 	 * @param swimmer POJO object
 	 * */
 	public void create(Swimmer swimmer) {
+		swimmer.validate();
 		manager.persist(swimmer);
 	}
 
@@ -87,11 +88,10 @@ public class SwimmerEJB {
 		
 		Long idc = swimmer.getIdc();
 		
-		try {
-			this.find(idc);
-		} catch(RuntimeException ignore) {
+		if(this.find(idc) == null)
 			throw new IdNotFoundException(idc, "SWIMMER");
-		}
+		
+		swimmer.validate();
 		
 		swimmer = manager.merge(swimmer);
 	}

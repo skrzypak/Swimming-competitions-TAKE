@@ -85,11 +85,8 @@ public class CompetitionEJB {
 		
 		Long idc = competition.getIdc();
 		
-		try {
-			this.find(idc);
-		} catch(RuntimeException ignore) {
+		if(this.find(idc) == null)
 			throw new IdNotFoundException(idc, "COMPETITION");
-		}
 		
 		competition = manager.merge(competition);
 	}

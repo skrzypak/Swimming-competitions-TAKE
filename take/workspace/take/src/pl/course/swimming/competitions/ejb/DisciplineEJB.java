@@ -95,11 +95,8 @@ public class DisciplineEJB {
 		
 		Long idc = discipline.getIdc();
 		
-		try {
-			this.find(idc);
-		} catch(RuntimeException ignore) {
+		if(this.find(idc) == null)
 			throw new IdNotFoundException(idc, "DISCIPLINE");
-		}
 		
 		Discipline tmp = this.findByName(discipline.getName());
 		

@@ -13,6 +13,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.ext.Provider;
 
 import pl.course.swimming.competitions.dto.ResultDto;
@@ -48,7 +49,7 @@ public class ResultREST {
 			return Response.ok(result).build();
 		}
 		
-		return Response.noContent().build();
+		return Response.status(Status.NOT_FOUND).build();
 	}
 	
 	@GET
@@ -64,7 +65,7 @@ public class ResultREST {
 			return Response.ok(results).build();
 		}
 		
-		return Response.noContent().build();
+		return Response.status(Status.NOT_FOUND).build();
 	}
 	
 	@GET
@@ -76,7 +77,7 @@ public class ResultREST {
 			return Response.ok(results).build();
 		}
 		
-		return Response.noContent().build();
+		return Response.status(Status.NOT_FOUND).build();
 	}
 	
 	@GET
@@ -88,7 +89,7 @@ public class ResultREST {
 			return Response.ok(results).build();
 		}
 		
-		return Response.noContent().build();
+		return Response.status(Status.NOT_FOUND).build();
 	}
 	
 	@GET
@@ -100,14 +101,14 @@ public class ResultREST {
 			return Response.ok(results).build();
 		}
 		
-		return Response.noContent().build();
+		return Response.status(Status.NOT_FOUND).build();
 	}
 	
 	@PUT
 	@Path("/{idc}")
 	public Response update(ResultDto resultDto, @PathParam("idc") long idc) {
 		bean.update(resultDto, idc);
-		return Response.ok().build();
+		return Response.noContent().build();
 	}
 
 
@@ -115,6 +116,6 @@ public class ResultREST {
 	@Path("/{idc}")
 	public Response delete(@PathParam("idc") long idc) {
 		bean.delete(idc);
-		return Response.ok().build();
+		return Response.noContent().build();
 	}
 }
