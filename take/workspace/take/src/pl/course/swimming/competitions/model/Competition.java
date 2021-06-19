@@ -11,15 +11,22 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import pl.course.swimming.competitions.adapter.LocalDateTimeAdapter;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Competition model
+ * @version 1.0
+ * @category POJO
+ * */
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idc")
 public class Competition implements Serializable {
@@ -43,7 +50,8 @@ public class Competition implements Serializable {
     private String place;
     
     @Basic
-	@Column(nullable = true)
+	@Column(nullable = false)
+    @XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
     private LocalDateTime dateTime;
     
     @JsonIgnore

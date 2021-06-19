@@ -20,6 +20,11 @@ import java.lang.IllegalArgumentException;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Swimmer model
+ * @version 1.0
+ * @category POJO
+ * */
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idc")
 public class Swimmer implements Serializable{

@@ -12,11 +12,19 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.ext.Provider;
 
 import pl.course.swimming.competitions.dto.ResultDto;
 import pl.course.swimming.competitions.ejb.ResultEJB;
 import pl.course.swimming.competitions.model.Result;
 
+/**
+ * Result API
+ * @version 1.0
+ * @category REST
+ * */
+@Provider
 @Path("/result")
 @Consumes({ "application/json" })
 @Produces({ "application/json" })
@@ -26,65 +34,87 @@ public class ResultREST {
 	ResultEJB bean;
 
 	@POST
-	public String create(ResultDto resultDto) {
+	public Response create(ResultDto resultDto) {
 		bean.create(resultDto);
-		return "result created!";
+		return Response.ok().build();
 	}
 
 	@GET
 	@Path("/{idc}")
-	public Result findById(@PathParam("idc") long idc) {
+	public Response findById(@PathParam("idc") long idc) {
 		Result result = bean.find(idc);
-		return result;
+		
+		if (result != null) {
+			return Response.ok(result).build();
+		}
+		
+		return Response.noContent().build();
 	}
 	
 	@GET
 	@Path("/fetch/3")
-	public List<Result> get(
+	public Response get(
 			@QueryParam("swimmerIdc") Long swimmerIdc,
 			@QueryParam("disciplineIdc") Long disciplineIdc,
 			@QueryParam("competitonIdc") Long competitionIdc
 	) {
 		List<Result> results = bean.fetchByAll(swimmerIdc, disciplineIdc, competitionIdc);
-		return results;
+		
+		if (results.size() > 0) {
+			return Response.ok(results).build();
+		}
+		
+		return Response.noContent().build();
 	}
 	
 	@GET
 	@Path("/fetch/swimmer/{idc}")
-	public List<Result> getBySwimmer(@PathParam("idc") Long idc) {
+	public Response getBySwimmer(@PathParam("idc") Long idc) {
 		List<Result> results = bean.fetchBySwimmerIdc(idc);
-		return results;
+		
+		if (results.size() > 0) {
+			return Response.ok(results).build();
+		}
+		
+		return Response.noContent().build();
 	}
 	
 	@GET
 	@Path("/fetch/discipline/{idc}")
-	public List<Result> getByDiscipline(@PathParam("idc") Long idc) {
+	public Response getByDiscipline(@PathParam("idc") Long idc) {
 		List<Result> results = bean.fetchByDisciplineIdc(idc);
-		return results;
+		
+		if (results.size() > 0) {
+			return Response.ok(results).build();
+		}
+		
+		return Response.noContent().build();
 	}
 	
 	@GET
 	@Path("/fetch/competition/{idc}")
-	public List<Result> getByCompetition(@PathParam("idc") Long idc) {
+	public Response getByCompetition(@PathParam("idc") Long idc) {
 		List<Result> results = bean.fetchCompetitonIdc(idc);
-		return results;
+		
+		if (results.size() > 0) {
+			return Response.ok(results).build();
+		}
+		
+		return Response.noContent().build();
 	}
 	
 	@PUT
-	public String update(Result result) {
-		try {
-			bean.update(result);
-			return "result updated!";
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "result not updated :(";
-		}
+	@Path("/{idc}")
+	public Response update(ResultDto resultDto, @PathParam("idc") long idc) {
+		bean.update(resultDto, idc);
+		return Response.ok().build();
 	}
 
 
 	@DELETE
 	@Path("/{idc}")
-	public void delete(@PathParam("idc") long idc) {
+	public Response delete(@PathParam("idc") long idc) {
 		bean.delete(idc);
+		return Response.ok().build();
 	}
 }

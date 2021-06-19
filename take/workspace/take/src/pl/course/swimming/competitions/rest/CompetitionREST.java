@@ -11,10 +11,19 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.ext.Provider;
 
 import pl.course.swimming.competitions.ejb.CompetitionEJB;
 import pl.course.swimming.competitions.model.Competition;
 
+/**
+ * Competition API
+ * @version 1.0
+ * @category REST
+ * */
+@Provider
 @Path("/competition")
 @Consumes({ "application/json" })
 @Produces({ "application/json" })
@@ -24,47 +33,58 @@ public class CompetitionREST {
 	CompetitionEJB bean;
 
 	@POST
-	public String create(Competition competition) {
+	public Response create(Competition competition) {
 		bean.create(competition);
-		return "competition created!";
+		return Response.ok(competition).build();
 	}
 	
 	@GET
-	public List<Competition> get() {
+	public Response get() {
 		List<Competition> competitions = bean.get();
-		return competitions;
+		
+		if (competitions.size() > 0) {
+			return Response.ok(competitions).build();
+		}
+		
+		return Response.noContent().build();
 	}
 
 	@GET
 	@Path("/{idc}")
-	public Competition findById(@PathParam("idc") long idc) {
+	public Response findById(@PathParam("idc") long idc) {
 		Competition competition = bean.find(idc);
-		return competition;
+		
+		if (competition != null) {
+			return Response.ok(competition).build();
+		}
+		
+		return Response.noContent().build();
 	}
 	
 	@GET
-	@Path("/{name}")
-	public List<Competition> findByName(@PathParam("name") String name) {
+	@Path("/name")
+	public Response findByName(@QueryParam("name") String name) {
 		List<Competition> competitions = bean.findByName(name);
-		return competitions;
+		
+		if (competitions.size() > 0) {
+			return Response.ok(competitions).build();
+		}
+		
+		return Response.noContent().build();
 	}
 	
 
 	@PUT
-	public String update(Competition competition) {
-		try {
-			bean.update(competition);
-			return "competition updated!";
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "competition not updated :(";
-		}
+	public Response update(Competition competition) {
+		bean.update(competition);
+		return Response.ok().build();
 	}
 
 
 	@DELETE
 	@Path("/{idc}")
-	public void delete(@PathParam("idc") long idc) {
+	public Response delete(@PathParam("idc") long idc) {
 		bean.delete(idc);
+		return Response.ok().build();
 	}
 }

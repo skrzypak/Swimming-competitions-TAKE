@@ -5,6 +5,11 @@ import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
+/**
+ * Mapper for RuntimeException
+ * @version 1.0
+ * @category ExceptionMapper
+ * */
 @Provider
 public class RuntimeExceptionMapper implements ExceptionMapper<RuntimeException> {
 

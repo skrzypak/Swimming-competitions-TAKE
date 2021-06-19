@@ -17,8 +17,16 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.sun.istack.internal.NotNull;
 
+import pl.course.swimming.competitions.dto.ResultDto;
+
 import java.lang.IllegalArgumentException;
 
+/**
+ * Result model
+ * @version 1.0
+ * @category POJO
+ * @see pl.course.swimming.competitions.dto.ResultDto
+ * */
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idc")
 public class Result implements Serializable {
@@ -59,6 +67,14 @@ public class Result implements Serializable {
 		this.swimmer = new Swimmer(result.getSwimmer());
 		this.discipline = new Discipline(result.getDiscipline());
 		this.competition = new Competition(result.getCompetition());
+	}
+	
+	public void update(ResultDto resultDto, Swimmer swimmer, Discipline discipline, Competition competition) {
+		this.setTimeObtainedSeconds(resultDto.getTimeObtainedSeconds());
+		this.setPlace(resultDto.getPlace());
+		this.setSwimmer(swimmer);
+		this.setDiscipline(discipline);
+		this.setCompetition(competition);
 	}
 
 	public long getIdc() {

@@ -12,10 +12,18 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.ext.Provider;
 
 import pl.course.swimming.competitions.ejb.SwimmerEJB;
 import pl.course.swimming.competitions.model.Swimmer;
 
+/**
+ * Swimmer API
+ * @version 1.0
+ * @category REST
+ * */
+@Provider
 @Path("/swimmer")
 @Consumes({ "application/json" })
 @Produces({ "application/json" })
@@ -25,50 +33,61 @@ public class SwimmerREST {
 	SwimmerEJB bean;
 
 	@POST
-	public String create(Swimmer swimmer) {
+	public Response create(Swimmer swimmer) {
 		bean.create(swimmer);
-		return "swimmer created!";
+		return Response.ok(swimmer).build();
 	}
 	
 	@GET
-	public List<Swimmer> get() {
+	public Response get() {
 		
 		List<Swimmer> swimmers = bean.get();
-		return swimmers;
+		
+		if (swimmers.size() > 0) {
+			return Response.ok(swimmers).build();
+		}
+		
+		return Response.noContent().build();
 	}
 
 	@GET
 	@Path("/{idc}")
-	public Swimmer findById(@PathParam("idc") long idc) {
+	public Response findById(@PathParam("idc") long idc) {
 		Swimmer swimmer = bean.find(idc);
-		return swimmer;
+		
+		if (swimmer != null) {
+			return Response.ok(swimmer).build();
+		}
+		
+		return Response.noContent().build();
 	}
 	
 	@GET
 	@Path("/fullname")
-	public List<Swimmer> findByFullName(
+	public Response findByFullName(
 			@QueryParam("name") String name,
 			@QueryParam("surname") String surname) {
 		List<Swimmer> swimmers = bean.findByFullName(name, surname);
-		return swimmers;
+		
+		if (swimmers.size() > 0) {
+			return Response.ok(swimmers).build();
+		}
+		
+		return Response.noContent().build();
 	}
 	
 
 	@PUT
-	public String update(Swimmer swimmer) {
-		try {
-			bean.update(swimmer);
-			return "swimmer updated!";
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "swimmer not updated :(";
-		}
+	public Response update(Swimmer swimmer) {
+		bean.update(swimmer);
+		return Response.ok().build();
 	}
 
 
 	@DELETE
 	@Path("/{idc}")
-	public void delete(@PathParam("idc") long idc) {
+	public Response delete(@PathParam("idc") long idc) {
 		bean.delete(idc);
+		return Response.ok().build();
 	}
 }

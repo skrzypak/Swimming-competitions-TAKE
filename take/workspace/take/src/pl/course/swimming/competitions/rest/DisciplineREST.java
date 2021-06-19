@@ -12,10 +12,18 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.ext.Provider;
 
 import pl.course.swimming.competitions.ejb.DisciplineEJB;
 import pl.course.swimming.competitions.model.Discipline;
 
+/**
+ * Discipline API
+ * @version 1.0
+ * @category REST
+ * */
+@Provider
 @Path("/discipline")
 @Consumes({ "application/json" })
 @Produces({ "application/json" })
@@ -25,47 +33,58 @@ public class DisciplineREST {
 	DisciplineEJB bean;
 
 	@POST
-	public String create(Discipline discipline) {
+	public Response create(Discipline discipline) {
 		bean.create(discipline);
-		return "discipline created!";
+		return Response.ok(discipline).build();
 	}
 	
 	@GET
-	public List<Discipline> get() {
+	public Response get() {
 		List<Discipline> disciplines = bean.get();
-		return disciplines;
+		
+		if (disciplines.size() > 0) {
+			return Response.ok(disciplines).build();
+		}
+		
+		return Response.noContent().build();
 	}
 
 	@GET
 	@Path("/{idc}")
-	public Discipline findById(@PathParam("idc") long idc) {
+	public Response findById(@PathParam("idc") long idc) {
 		Discipline discipline = bean.find(idc);
-		return discipline;
+		
+		if (discipline != null) {
+			return Response.ok(discipline).build();
+		}
+		
+		return Response.noContent().build();
 	}
 	
 	@GET
 	@Path("/name")
-	public Discipline findByName(@QueryParam("name") String name) {
+	public Response findByName(@QueryParam("name") String name) {
 		Discipline discipline = bean.findByName(name);
-		return discipline;
+		
+		if (discipline != null) {
+			return Response.ok(discipline).build();
+		}
+		
+		return Response.noContent().build();
 	}
 	
 
 	@PUT
-	public String update(Discipline discipline) {
-		try {
-			bean.update(discipline);
-			return "discipline updated!";
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "discipline not updated :(";
-		}
+	public Response update(Discipline discipline) {
+		bean.update(discipline);
+		return Response.ok().build();
 	}
 
 
 	@DELETE
 	@Path("/{idc}")
-	public void delete(@PathParam("idc") long idc) {
+	public Response delete(@PathParam("idc") long idc) {
 		bean.delete(idc);
+		return Response.ok().build();
 	}
 }
