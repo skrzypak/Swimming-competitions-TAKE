@@ -101,6 +101,13 @@ public class DisciplineEJB {
 			throw new IdNotFoundException(idc, "DISCIPLINE");
 		}
 		
-		discipline = manager.merge(discipline);
+		Discipline tmp = this.findByName(discipline.getName());
+		
+		if(tmp == null) {
+			discipline = manager.merge(discipline);
+		} else {
+			throw new DuplicateException("NAME", discipline.getName());
+		}
+		
 	}
 }

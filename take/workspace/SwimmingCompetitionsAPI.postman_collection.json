@@ -1,0 +1,1026 @@
+{
+	"info": {
+		"_postman_id": "19cc8258-80ed-43eb-aec5-96f872353ac2",
+		"name": "SwimmingCompetitionsAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "SwimmerAPI",
+			"item": [
+				{
+					"name": "take/swimmer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/take/swimmer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"take",
+								"swimmer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "take/swimmer/{idc}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/take/swimmer/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"take",
+								"swimmer",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "take/swimmer/fullname",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/take/swimmer/fullname?name=Jan&surname=Kowalski",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"take",
+								"swimmer",
+								"fullname"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Jan"
+								},
+								{
+									"key": "surname",
+									"value": "Kowalski"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "take/swimmer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Jan\",\r\n    \"surname\": \"Kowalski\",\r\n    \"gender\": 1,\r\n    \"age\": 25,\r\n    \"town\": \"Warszawa\",\r\n    \"phoneNumber\": \"509-123-578\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/take/swimmer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"take",
+								"swimmer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "take/swimmer",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idc\": 1,\r\n    \"name\": \"Andrzej\",\r\n    \"surname\": \"Wróżbita\",\r\n    \"gender\": 1,\r\n    \"age\": 25,\r\n    \"town\": \"Universe\",\r\n    \"phoneNumber\": \"509-123-578\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/take/swimmer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"take",
+								"swimmer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "take/swimmer",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idc\": 1,\r\n    \"name\": \"Jan\",\r\n    \"surname\": \"Kowalski\",\r\n    \"gender\": 1,\r\n    \"age\": 25,\r\n    \"town\": \"Warszawa\",\r\n    \"phoneNumber\": \"509-123-578\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/take/swimmer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"take",
+								"swimmer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "take/swimmer EXCEPTION",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Testowy\",\r\n    \"surname\": \"Wyjątek\",\r\n    \"gender\": 1,\r\n    \"age\": 25,\r\n    \"town\": \"Warszawa\",\r\n    \"phoneNumber\": \"509-123-578\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/take/swimmer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"take",
+								"swimmer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "take/swimmer/{idc}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Dominik\",\r\n    \"surname\": \"Kowalski\",\r\n    \"gender\": 1,\r\n    \"age\": 5,\r\n    \"town\": \"Lóksembórg\",\r\n    \"phoneNumber\": \"123123123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/take/swimmer/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"take",
+								"swimmer",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "take/swimmer/{idc} EXCEPTION",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Dominik\",\r\n    \"surname\": \"Kowalski\",\r\n    \"gender\": 1,\r\n    \"age\": 5,\r\n    \"town\": \"Lóksembórg\",\r\n    \"phoneNumber\": \"123123123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/take/swimmer/-1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"take",
+								"swimmer",
+								"-1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"",
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "DisciplineAPI",
+			"item": [
+				{
+					"name": "take/discipline",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/take/discipline",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"take",
+								"discipline"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "take/discipline/{idc}",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/take/discipline/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"take",
+								"discipline",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "take/discipline/name",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/take/discipline/?name=Kraul",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"take",
+								"discipline",
+								""
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Kraul"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "take/discipline",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Kraul\",\r\n    \"distanceInMeters\": \"100\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/take/discipline",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"take",
+								"discipline"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "take/discipline",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idc\": 1,\r\n    \"name\": \"Dowolny\",\r\n    \"distanceInMeters\": \"50\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/take/discipline",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"take",
+								"discipline"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "take/discipline EXCEPTION",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Dowolny\",\r\n    \"distanceInMeters\": \"50\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/take/discipline",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"take",
+								"discipline"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "take/discipline",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idc\": 1,\r\n    \"name\": \"Dowolny\",\r\n    \"distanceInMeters\": \"50\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/take/discipline/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"take",
+								"discipline",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "take/discipline EXCEPTION",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idc\": 1,\r\n    \"name\": \"Dowolny\",\r\n    \"distanceInMeters\": \"50\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/take/discipline/-1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"take",
+								"discipline",
+								"-1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CompetitionAPI",
+			"item": [
+				{
+					"name": "take/competition",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/take/competition",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"take",
+								"competition"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "take/competition/{idc}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/take/competition/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"take",
+								"competition",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "take/competition/name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/take/competition/name?name=Mikołajkowe Zawody",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"take",
+								"competition",
+								"name"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Mikołajkowe Zawody"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "take/competition",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Mikołajkowe Zawody\",\r\n    \"organizer\": \"Mosir Katowice\",\r\n    \"place\": \"Katowice\",\r\n    \"dateTime\": \"2020-02-05T12:59\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/take/competition",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"take",
+								"competition"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "take/competition",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idc\": 1,\r\n    \"name\": \"Noworoczne Zawody\",\r\n    \"organizer\": \"Starostowo Zabrze\",\r\n    \"place\": \"Zabrze\",\r\n    \"dateTime\": \"2018-02-05T12:59\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/take/competition",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"take",
+								"competition"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "take/competition EXCEPTION",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Noworoczne Zawody\",\r\n    \"organizer\": \"Starostowo Zabrze\",\r\n    \"place\": \"Zabrze\",\r\n    \"dateTime\": \"2018-02-05T12:59\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/take/competition",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"take",
+								"competition"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "take/competition",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/take/competition/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"take",
+								"competition",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "take/competition EXCEPTION",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/take/competition/-1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"take",
+								"competition",
+								"-1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ResultAPI",
+			"item": [
+				{
+					"name": "take/result/{idc}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/take/result/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"take",
+								"result",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "take/result/fetch/3",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/take/result/fetch/3?swimmerIdc=1&disciplineIdc=1&competitionIdc=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"take",
+								"result",
+								"fetch",
+								"3"
+							],
+							"query": [
+								{
+									"key": "swimmerIdc",
+									"value": "1"
+								},
+								{
+									"key": "disciplineIdc",
+									"value": "1"
+								},
+								{
+									"key": "competitionIdc",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "take/result/fetch/swimmer/{idc}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/take/result/fetch/swimmer/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"take",
+								"result",
+								"fetch",
+								"swimmer",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "take/result/fetch/discipline/{idc}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/take/result/fetch/discipline/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"take",
+								"result",
+								"fetch",
+								"discipline",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "take/result/fetch/competition/{idc}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/take/result/fetch/competition/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"take",
+								"result",
+								"fetch",
+								"competition",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "take/result",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"timeObtainedSeconds\": 10,\r\n    \"place\": 1,\r\n    \"swimmerIdc\": 1,\r\n    \"competitionIdc\": 1,\r\n    \"disciplineIdc\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/take/result",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"take",
+								"result"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "take/result",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"timeObtainedSeconds\": 50,\r\n    \"place\": 2,\r\n    \"swimmerIdc\": 1,\r\n    \"competitionIdc\": 1,\r\n    \"disciplineIdc\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/take/result/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"take",
+								"result",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "take/result EXCEPTION",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"timeObtainedSeconds\": 100,\r\n    \"place\": 2,\r\n    \"swimmerIdc\": -1,\r\n    \"competitionIdc\": 1,\r\n    \"disciplineIdc\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/take/result/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"take",
+								"result",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "take/result/{idc}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/take/result/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"take",
+								"result",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "take/result/{idc} EXCEPTION",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/take/result/-1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"take",
+								"result",
+								"-1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
