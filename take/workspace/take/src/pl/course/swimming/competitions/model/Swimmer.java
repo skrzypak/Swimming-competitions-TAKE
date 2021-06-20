@@ -101,7 +101,7 @@ public class Swimmer implements Serializable{
 	}
 	
 	public void set(Character gender) {
-		if (gender.equals("M") || gender.equals("M")) {
+		if (gender.equals('M') || gender.equals('W')) {
 			this.gender = gender;
 			return;
 		}
@@ -151,8 +151,8 @@ public class Swimmer implements Serializable{
 		if(this.age < 0)
 			throw new IllegalArgumentException("Age must be greather than 0");
 		
-		if (!this.gender.equals("M") && !this.gender.equals("M")) 
-			throw new IllegalArgumentException("Invalid gender value {M, W}");
+		if (!(gender.equals('M') || gender.equals('W'))) 
+			throw new IllegalArgumentException("Invalid gender value " + gender + " {M, W}");
 	}
 
 	@Override
