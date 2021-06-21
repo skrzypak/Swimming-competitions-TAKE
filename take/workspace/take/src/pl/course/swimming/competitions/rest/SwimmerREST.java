@@ -14,13 +14,17 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-import javax.ws.rs.ext.Provider;
 
 import pl.course.swimming.competitions.ejb.SwimmerEJB;
 import pl.course.swimming.competitions.model.Swimmer;
 
 /**
  * Swimmer API
+ * Status code:
+ * GET		200, 404
+ * POST		200, 404
+ * PUT		204, 400, 404
+ * DELETE	204, 400, 404
  * @version 1.0
  * @category REST
  * */

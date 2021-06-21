@@ -14,13 +14,16 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-import javax.ws.rs.ext.Provider;
 
 import pl.course.swimming.competitions.ejb.CompetitionEJB;
 import pl.course.swimming.competitions.model.Competition;
 
 /**
  * Competition API
+ * GET		200, 404
+ * POST		200, 404
+ * PUT		204, 400, 404
+ * DELETE	204, 400, 404
  * @version 1.0
  * @category REST
  * */

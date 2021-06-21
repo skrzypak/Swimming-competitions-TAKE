@@ -14,13 +14,16 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-import javax.ws.rs.ext.Provider;
 
 import pl.course.swimming.competitions.ejb.DisciplineEJB;
 import pl.course.swimming.competitions.model.Discipline;
 
 /**
  * Discipline API
+ * GET		200, 404
+ * POST		200, 404, 409
+ * PUT		204, 400, 404, 409
+ * DELETE	204, 400, 404
  * @version 1.0
  * @category REST
  * */

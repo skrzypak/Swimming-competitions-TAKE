@@ -14,7 +14,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-import javax.ws.rs.ext.Provider;
 
 import pl.course.swimming.competitions.dto.ResultDto;
 import pl.course.swimming.competitions.ejb.ResultEJB;
@@ -22,6 +21,10 @@ import pl.course.swimming.competitions.model.Result;
 
 /**
  * Result API
+ * GET		200, 404
+ * POST		200, 404
+ * PUT		204, 400, 404
+ * DELETE	204, 400, 404
  * @version 1.0
  * @category REST
  * */
