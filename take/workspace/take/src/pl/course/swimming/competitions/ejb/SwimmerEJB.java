@@ -41,7 +41,7 @@ public class SwimmerEJB {
 		if(swimmer == null) {
 			throw new IdNotFoundException(idc, "SWIMMER");
 		}
-		
+
 		manager.remove(swimmer);
 	}
 

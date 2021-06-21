@@ -19,7 +19,9 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import pl.course.swimming.competitions.adapter.LocalDateTimeAdapter;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -55,8 +57,8 @@ public class Competition implements Serializable {
     private LocalDateTime dateTime;
     
     @JsonIgnore
-    @OneToMany(mappedBy = "competition", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private Set<Result> results = new HashSet<Result>();
+    @OneToMany(mappedBy = "competition", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Result> results = new ArrayList<Result>();
     
     public Competition() {}
     
@@ -105,7 +107,7 @@ public class Competition implements Serializable {
         this.dateTime = dateTime;
     }
     
-    public Set<Result> getResults() {
+    public List<Result> getResults() {
 		return this.results;
 	}
 	
@@ -113,17 +115,17 @@ public class Competition implements Serializable {
 		this.results.add(result);
 		result.setCompetition(this);
 	}
+	
+	public void removeResult(Result result) {
+		this.results.remove(result);
+		result.setCompetition(null);
+	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((dateTime == null) ? 0 : dateTime.hashCode());
 		result = prime * result + (int) (idc ^ (idc >>> 32));
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((organizer == null) ? 0 : organizer.hashCode());
-		result = prime * result + ((place == null) ? 0 : place.hashCode());
-		result = prime * result + ((results == null) ? 0 : results.hashCode());
 		return result;
 	}
 

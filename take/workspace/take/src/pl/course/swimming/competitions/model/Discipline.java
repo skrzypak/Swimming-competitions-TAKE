@@ -1,7 +1,9 @@
 package pl.course.swimming.competitions.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Basic;
@@ -42,8 +44,8 @@ public class Discipline implements Serializable {
 	private int distanceInMeters;
 	
 	@JsonIgnore
-    @OneToMany(mappedBy = "discipline", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private Set<Result> results  = new HashSet<Result>();
+    @OneToMany(mappedBy = "discipline", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Result> results  = new ArrayList<Result>();;
 
 	public Discipline() {}
 	
@@ -79,7 +81,7 @@ public class Discipline implements Serializable {
         throw new IllegalArgumentException("Distanced must be greater than 0");
 	}
 	
-	public Set<Result> getResults() {
+	public List<Result> getResults() {
 		return this.results;
 	}
 	
@@ -87,15 +89,17 @@ public class Discipline implements Serializable {
 		this.results.add(result);
 		result.setDiscipline(this);
 	}
+	
+	public void removeResult(Result result) {
+		this.results.remove(result);
+		result.setDiscipline(null);
+	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + distanceInMeters;
 		result = prime * result + (int) (idc ^ (idc >>> 32));
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((results == null) ? 0 : results.hashCode());
 		return result;
 	}
 

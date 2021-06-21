@@ -17,7 +17,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import java.lang.IllegalArgumentException;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -61,7 +63,7 @@ public class Swimmer implements Serializable{
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "swimmer", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-	private Set<Result> results  = new HashSet<Result>();
+	private List<Result> results = new ArrayList<Result>();
 	
 	public Swimmer() {}
 	
@@ -138,13 +140,18 @@ public class Swimmer implements Serializable{
 		this.phoneNumber = phoneNumber;
 	}
 	
-	public Set<Result> getResults() {
+	public List<Result> getResults() {
     	return this.results;
 	}
 	
 	public void addResult(Result result) {
 		this.results.add(result);
 		result.setSwimmer(this);
+	}
+	
+	public void removeResult(Result result) {
+		this.results.remove(result);
+		result.setSwimmer(null);
 	}
 	
 	public void validate() {
@@ -159,14 +166,7 @@ public class Swimmer implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + age;
-		result = prime * result + gender;
 		result = prime * result + (int) (idc ^ (idc >>> 32));
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
-		result = prime * result + ((results == null) ? 0 : results.hashCode());
-		result = prime * result + ((surname == null) ? 0 : surname.hashCode());
-		result = prime * result + ((town == null) ? 0 : town.hashCode());
 		return result;
 	}
 

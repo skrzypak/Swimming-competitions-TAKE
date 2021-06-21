@@ -38,8 +38,8 @@ public class ResultREST {
 
 	@POST
 	public Response create(ResultDto resultDto) {
-		bean.create(resultDto);
-		return Response.ok().build();
+		Result resp = bean.create(resultDto);
+		return Response.ok(resp).build();
 	}
 
 	@GET

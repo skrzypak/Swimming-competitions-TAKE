@@ -30,24 +30,37 @@ public class ResultEJB {
 	/**
 	 * Add new result
 	 * @param resultDto DTO object of result model
+	 * @return result item
 	 * */
-	public void create(ResultDto resultDto) {
+	public Result create(ResultDto resultDto) {
 		
 		Result result = new Result();
 		
 		Swimmer swimmer = manager.find(Swimmer.class, resultDto.getSwimmerIdc());
+
+		if(swimmer == null)
+			throw new IdNotFoundException(resultDto.getSwimmerIdc(), "SWIMMER");
+		
 		Discipline discipline = manager.find(Discipline.class, resultDto.getDisciplineIdc());
+		
+		if(discipline == null)
+			throw new IdNotFoundException(resultDto.getDisciplineIdc(), "DISCIPLINE");
+		
 		Competition competition = manager.find(Competition.class, resultDto.getCompetitionIdc());
 		
-		try {
-			this.validateRelation(resultDto, swimmer, discipline, competition);
-		} catch(IdNotFoundException ex) {
-			throw ex;
-		}
+		if(competition == null)
+			throw new IdNotFoundException(resultDto.getCompetitionIdc(), "COMPETITION");
 		
-		result.update(resultDto, swimmer, discipline, competition);
+		result.setPlace(resultDto.getPlace());
+		result.setTimeObtainedSeconds(resultDto.getTimeObtainedSeconds());
+		swimmer.addResult(result);
+		discipline.addResult(result);
+		competition.addResult(result);
 		
-		manager.persist(result);
+		manager.persist(result);		
+		manager.flush();
+		
+		return result;
 	}
 	
 	/**
@@ -57,25 +70,31 @@ public class ResultEJB {
 	 * */
 	public void update(ResultDto resultDto, long idc) {
 		
-		Result result;
+		Result result = manager.find(Result.class, idc);
 		
-		try {
-			result = manager.getReference(Result.class, idc);
-		} catch(RuntimeException ignore) {
+		if(result == null)
 			throw new IdNotFoundException(idc, "RESULT");
-		}
 		
 		Swimmer swimmer = manager.find(Swimmer.class, resultDto.getSwimmerIdc());
+
+		if(swimmer == null)
+			throw new IdNotFoundException(resultDto.getSwimmerIdc(), "SWIMMER");
+		
 		Discipline discipline = manager.find(Discipline.class, resultDto.getDisciplineIdc());
+		
+		if(discipline == null)
+			throw new IdNotFoundException(resultDto.getDisciplineIdc(), "DISCIPLINE");
+		
 		Competition competition = manager.find(Competition.class, resultDto.getCompetitionIdc());
 		
-		try {
-			this.validateRelation(resultDto, swimmer, discipline, competition);
-		} catch(IdNotFoundException ex) {
-			throw ex;
-		}
+		if(competition == null)
+			throw new IdNotFoundException(resultDto.getCompetitionIdc(), "COMPETITION");
 		
-		result.update(resultDto, swimmer, discipline, competition);
+		result.setPlace(resultDto.getPlace());
+		result.setTimeObtainedSeconds(resultDto.getTimeObtainedSeconds());
+		swimmer.addResult(result);
+		discipline.addResult(result);
+		competition.addResult(result);
 		
 		manager.merge(result);
 	}
@@ -173,27 +192,4 @@ public class ResultEJB {
 		manager.remove(result);
 	}
 	
-	/**
-	 * Validate relations
-	 * @param resultDto
-	 * @param swimmer
-	 * @param discipline
-	 * @param competition
-	 * **/
-	private void validateRelation(ResultDto resultDto, Swimmer swimmer, Discipline discipline, Competition competition) throws IdNotFoundException{
-		if(swimmer == null ) {
-			Long id = new Long(resultDto.getSwimmerIdc());
-			throw new IdNotFoundException(id, "SWIMMER");
-		}
-		
-		if(discipline == null ) {
-			Long id = new Long(resultDto.getDisciplineIdc());
-			throw new IdNotFoundException(id, "DISCIPLINE");
-		}
-		
-		if(competition == null ) {
-			Long id = new Long(resultDto.getCompetitionIdc());
-			throw new IdNotFoundException(id, "COMPETITION");
-		}
-	}
 }
