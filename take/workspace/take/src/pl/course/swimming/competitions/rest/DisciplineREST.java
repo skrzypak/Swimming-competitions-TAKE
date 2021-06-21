@@ -24,7 +24,6 @@ import pl.course.swimming.competitions.model.Discipline;
  * @version 1.0
  * @category REST
  * */
-@Provider
 @Path("/discipline")
 @Consumes({ "application/json" })
 @Produces({ "application/json" })

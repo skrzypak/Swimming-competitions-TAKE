@@ -11,5 +11,6 @@
 	<classpathentry kind="lib" path="C:/Users/Xboot/Code/Swimming-competitions-TAKE/take/workspace/take/lib/jackson-dataformat-xml-2.8.9.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Xboot/Code/Swimming-competitions-TAKE/take/workspace/take/lib/jackson-dataformat-yaml-2.8.9.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Xboot/Code/Swimming-competitions-TAKE/take/workspace/take/lib/jackson-annotations-2.8.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Xboot/Code/Swimming-competitions-TAKE/take/workspace/take/lib/javax.ws.rs-api-2.0-m09.jar"/>
 	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>
