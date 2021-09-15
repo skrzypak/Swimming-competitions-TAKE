@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "19cc8258-80ed-43eb-aec5-96f872353ac2",
+		"_postman_id": "dc6b4844-41aa-49cd-b795-a153090044b3",
 		"name": "SwimmingCompetitionsAPI",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -598,7 +598,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Mikołajkowe Zawody\",\r\n    \"organizer\": \"Mosir Katowice\",\r\n    \"place\": \"Katowice\",\r\n    \"dateTime\": \"2020-02-05T12:59\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Mikołajkowe Zawody2\",\r\n    \"organizer\": \"Mosir Katowice\",\r\n    \"place\": \"Katowice\",\r\n    \"dateTime\": \"2020-02-05T12:59\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -744,6 +744,27 @@
 			"name": "ResultAPI",
 			"item": [
 				{
+					"name": "take/result/",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/take/result/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"take",
+								"result",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "take/result/{idc}",
 					"request": {
 						"method": "GET",
@@ -765,12 +786,12 @@
 					"response": []
 				},
 				{
-					"name": "take/result/fetch/3",
+					"name": "take/result/fetch/all",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/take/result/fetch/3?swimmerIdc=1&disciplineIdc=1&competitionIdc=1",
+							"raw": "http://localhost:8080/take/result/fetch/all?swimmerIdc=1&disciplineIdc=1&competitionIdc=1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -780,7 +801,7 @@
 								"take",
 								"result",
 								"fetch",
-								"3"
+								"all"
 							],
 							"query": [
 								{
@@ -876,7 +897,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"timeObtainedSeconds\": 10,\r\n    \"place\": 1,\r\n    \"swimmerIdc\": 1,\r\n    \"competitionIdc\": 1,\r\n    \"disciplineIdc\": 1\r\n}",
+							"raw": "{\r\n    \"timeObtainedSeconds\": 100,\r\n    \"place\": 2,\r\n    \"swimmerIdc\": 1,\r\n    \"competitionIdc\": 1,\r\n    \"disciplineIdc\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

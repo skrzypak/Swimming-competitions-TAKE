@@ -43,6 +43,18 @@ public class ResultREST {
 	}
 
 	@GET
+	@Path("/")
+	public Response get() {
+		List<Result> results = bean.fetchByNull();
+		
+		if (results.size() > 0) {
+			return Response.ok(results).build();
+		}
+		
+		return Response.status(Status.NOT_FOUND).build();
+	}
+	
+	@GET
 	@Path("/{idc}")
 	public Response findById(@PathParam("idc") long idc) {
 		Result result = bean.find(idc);
@@ -55,8 +67,8 @@ public class ResultREST {
 	}
 	
 	@GET
-	@Path("/fetch/3")
-	public Response get(
+	@Path("/fetch/all")
+	public Response getByAll(
 			@QueryParam("swimmerIdc") Long swimmerIdc,
 			@QueryParam("disciplineIdc") Long disciplineIdc,
 			@QueryParam("competitonIdc") Long competitionIdc

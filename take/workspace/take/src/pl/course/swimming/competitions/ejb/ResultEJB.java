@@ -138,6 +138,14 @@ public class ResultEJB {
 		return this.fetch(null, null, idc);
 	}
 	
+	/**
+	 * Get all results
+	 * @return list of results
+	 * */
+	public List<Result> fetchByNull() {
+		return this.fetch(null, null, null);
+	}
+	
 	private List<Result> fetch(Long swimmerIdc, Long disciplineIdc, Long competitionIdc) {
 		
 		StringBuffer query = new StringBuffer("select r.idc from Result r");
