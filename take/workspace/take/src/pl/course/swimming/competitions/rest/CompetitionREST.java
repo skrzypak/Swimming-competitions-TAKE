@@ -19,28 +19,41 @@ import pl.course.swimming.competitions.ejb.CompetitionEJB;
 import pl.course.swimming.competitions.model.Competition;
 
 /**
- * Competition API
- * GET		200, 404
- * POST		200, 404
- * PUT		204, 400, 404
- * DELETE	204, 400, 404
+ * Competition REST API
+ *
  * @version 1.0
  * @category REST
- * */
+ */
 @Path("/competition")
 @Consumes({ "application/json" })
 @Produces({ "application/json" })
 public class CompetitionREST {
-	
+
+	/**
+	 * The Bean.
+	 */
 	@EJB
 	CompetitionEJB bean;
 
+	/**
+	 * Create new competition .
+	 *
+	 * @param competition POJO object
+	 * 
+	 * @return competition (200) - successfully created new competition
+	 */
 	@POST
 	public Response create(Competition competition) {
 		bean.create(competition);
 		return Response.ok(competition).build();
 	}
-	
+
+	/**
+	 * Get all competitions.
+	 *
+	 * @return list of competitions (200) - successfully found competitions
+	 * @return (404) - not found any competition
+	 */
 	@GET
 	public Response get() {
 		List<Competition> competitions = bean.get();
@@ -52,6 +65,14 @@ public class CompetitionREST {
 		return Response.status(Status.NOT_FOUND).build();
 	}
 
+	/**
+	 * Find by competition's id.
+	 *
+	 * @param idc the idc
+	 * 
+	 * @return competition (200) - successfully found competitions
+	 * @return (404) - not found any competition
+	 */
 	@GET
 	@Path("/{idc}")
 	public Response findById(@PathParam("idc") long idc) {
@@ -63,7 +84,15 @@ public class CompetitionREST {
 		
 		return Response.status(Status.NOT_FOUND).build();
 	}
-	
+
+	/**
+	 * Find by competition's name.
+	 *
+	 * @param name the competition name
+	 * 
+	 * @return competition (200) - successfully found competitions
+	 * @return (404) - not found any competition
+	 */
 	@GET
 	@Path("/name")
 	public Response findByName(@QueryParam("name") String name) {
@@ -75,8 +104,17 @@ public class CompetitionREST {
 		
 		return Response.status(Status.NOT_FOUND).build();
 	}
-	
 
+
+	/**
+	 * Update competition.
+	 *
+	 * @param competition POJO object
+	 * 
+	 * @return (204) - successfully updated competition
+	 * @return (400) - bad request
+	 * @return (404) - not found any competition
+	 */
 	@PUT
 	public Response update(Competition competition) {
 		bean.update(competition);
@@ -84,6 +122,14 @@ public class CompetitionREST {
 	}
 
 
+	/**
+	 * Delete competition.
+	 *
+	 * @param idc the idc
+	 * 
+	 * @return (204) - successfully remove competition
+	 * @return (404) - not found any competition
+	 */
 	@DELETE
 	@Path("/{idc}")
 	public Response delete(@PathParam("idc") long idc) {

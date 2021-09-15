@@ -22,9 +22,10 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 /**
  * Discipline model
+ *
  * @version 1.0
  * @category POJO
- * */
+ */
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idc")
 public class Discipline implements Serializable {
@@ -47,8 +48,16 @@ public class Discipline implements Serializable {
     @OneToMany(mappedBy = "discipline", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Result> results  = new ArrayList<Result>();;
 
+	/**
+	 * Instantiates a new Discipline.
+	 */
 	public Discipline() {}
-	
+
+	/**
+	 * Instantiates a new Discipline.
+	 *
+	 * @param discipline the discipline
+	 */
 	public Discipline(Discipline discipline) {
 		this.idc = discipline.getIdc();
 		this.name = discipline.getName();
@@ -56,22 +65,47 @@ public class Discipline implements Serializable {
 		this.results = discipline.getResults();
 	}
 
+	/**
+	 * Gets idc.
+	 *
+	 * @return the idc
+	 */
 	public long getIdc() {
 		return idc;
 	}
 
+	/**
+	 * Gets name.
+	 *
+	 * @return the name
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * Sets name.
+	 *
+	 * @param name the name
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * Gets distance in meters.
+	 *
+	 * @return the distance in meters
+	 */
 	public int getDistanceInMeters() {
 		return distanceInMeters;
 	}
 
+	/**
+	 * Sets distance in meters.
+	 *
+	 * @param distanceInMeters the distance in meters
+	 */
 	public void setDistanceInMeters(int distanceInMeters) {
 		if (distanceInMeters > 0) {
 			this.distanceInMeters = distanceInMeters;
@@ -80,16 +114,31 @@ public class Discipline implements Serializable {
 
         throw new IllegalArgumentException("Distanced must be greater than 0");
 	}
-	
+
+	/**
+	 * Gets results.
+	 *
+	 * @return the results
+	 */
 	public List<Result> getResults() {
 		return this.results;
 	}
-	
+
+	/**
+	 * Add result.
+	 *
+	 * @param result the result
+	 */
 	public void addResult(Result result) {
 		this.results.add(result);
 		result.setDiscipline(this);
 	}
-	
+
+	/**
+	 * Remove result.
+	 *
+	 * @param result the result
+	 */
 	public void removeResult(Result result) {
 		this.results.remove(result);
 		result.setDiscipline(null);

@@ -7,9 +7,10 @@ import javax.ws.rs.ext.Provider;
 
 /**
  * Mapper for IllegalArgumentException
+ *
  * @version 1.0
  * @category ExceptionMapper
- * */
+ */
 @Provider
 public class IllegalArgumentExceptionMapper implements ExceptionMapper<IllegalArgumentException> {
 

@@ -19,28 +19,43 @@ import pl.course.swimming.competitions.ejb.DisciplineEJB;
 import pl.course.swimming.competitions.model.Discipline;
 
 /**
- * Discipline API
- * GET		200, 404
- * POST		200, 404, 409
- * PUT		204, 400, 404, 409
- * DELETE	204, 400, 404
+ * Discipline REST API
+ *
  * @version 1.0
  * @category REST
- * */
+ */
 @Path("/discipline")
 @Consumes({ "application/json" })
 @Produces({ "application/json" })
 public class DisciplineREST {
-	
+
+	/**
+	 * The Bean.
+	 */
 	@EJB
 	DisciplineEJB bean;
 
+	/**
+	 * Create new discipline.
+	 *
+	 * @param discipline POJO object
+	 * @return discipline (200) - successfully created new discipline
+	 * @return (409) - discipline already exists
+	 */
 	@POST
 	public Response create(Discipline discipline) {
 		bean.create(discipline);
 		return Response.ok(discipline).build();
 	}
-	
+
+	/**
+	 * Get all disciplines.
+	 *
+	 * @param discipline POJO object
+	 * 
+	 * @return list of disciplines (200) - successfully found disciplines
+	 * @return (404) - not found any discipline
+	 */
 	@GET
 	public Response get() {
 		List<Discipline> disciplines = bean.get();
@@ -52,6 +67,14 @@ public class DisciplineREST {
 		return Response.status(Status.NOT_FOUND).build();
 	}
 
+	/**
+	 * Find discipline by id.
+	 *
+	 * @param idc the idc
+	 * 
+	 * @return discipline (200) - successfully found discipline
+	 * @return (404) - not found any discipline
+	 */
 	@GET
 	@Path("/{idc}")
 	public Response findById(@PathParam("idc") long idc) {
@@ -63,7 +86,15 @@ public class DisciplineREST {
 		
 		return Response.status(Status.NOT_FOUND).build();
 	}
-	
+
+	/**
+	 * Find discipline by name.
+	 *
+	 * @param name the name
+	 * 
+	 * @return discipline (200) - successfully found discipline
+	 * @return (404) - not found any discipline
+	 */
 	@GET
 	@Path("/name")
 	public Response findByName(@QueryParam("name") String name) {
@@ -75,8 +106,16 @@ public class DisciplineREST {
 		
 		return Response.status(Status.NOT_FOUND).build();
 	}
-	
 
+
+	/**
+	 * Update discipline.
+	 *
+	 * @param discipline POJO object
+	 * 
+	 * @return (204) - successfully updated discipline
+	 * @return (409) - discipline already exists
+	 */
 	@PUT
 	public Response update(Discipline discipline) {
 		bean.update(discipline);
@@ -84,6 +123,14 @@ public class DisciplineREST {
 	}
 
 
+	/**
+	 * Delete discipline.
+	 *
+	 * @param idc the idc
+	 * 
+	 * @return (204) - successfully remove discipline
+	 * @return (404) - not found any discipline
+	 */
 	@DELETE
 	@Path("/{idc}")
 	public Response delete(@PathParam("idc") long idc) {

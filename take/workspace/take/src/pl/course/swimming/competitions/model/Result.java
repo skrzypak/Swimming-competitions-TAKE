@@ -20,10 +20,11 @@ import java.lang.IllegalArgumentException;
 
 /**
  * Result model
+ *
  * @version 1.0
  * @category POJO
  * @see pl.course.swimming.competitions.dto.ResultDto
- * */
+ */
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idc")
 public class Result implements Serializable {
@@ -54,10 +55,18 @@ public class Result implements Serializable {
     @JoinColumn(name = "fk_competition")
     @NotNull
     private Competition competition;
-    
+
+    /**
+     * Instantiates a new Result.
+     */
     public Result() {}
-    
-	public Result(Result result) {
+
+    /**
+     * Instantiates a new Result.
+     *
+     * @param result the result
+     */
+    public Result(Result result) {
 		this.idc = result.getIdc();
 		this.timeObtainedSeconds = result.getTimeObtainedSeconds();
 		this.place = result.getPlace();		
@@ -65,39 +74,84 @@ public class Result implements Serializable {
 		this.discipline = new Discipline(result.getDiscipline());
 		this.competition = new Competition(result.getCompetition());
 	}
-	
-	public long getIdc() {
+
+    /**
+     * Gets idc.
+     *
+     * @return the idc
+     */
+    public long getIdc() {
         return idc;
     }
 
+    /**
+     * Gets swimmer.
+     *
+     * @return the swimmer
+     */
     public Swimmer getSwimmer() {
         return swimmer;
     }
 
+    /**
+     * Sets swimmer.
+     *
+     * @param swimmer the swimmer
+     */
     public void setSwimmer(Swimmer swimmer) {
         this.swimmer = swimmer;
     }
 
+    /**
+     * Gets discipline.
+     *
+     * @return the discipline
+     */
     public Discipline getDiscipline() {
         return discipline;
     }
 
+    /**
+     * Sets discipline.
+     *
+     * @param discipline the discipline
+     */
     public void setDiscipline(Discipline discipline) {
         this.discipline = discipline;
     }
 
+    /**
+     * Gets competition.
+     *
+     * @return the competition
+     */
     public Competition getCompetition() {
         return competition;
     }
 
+    /**
+     * Sets competition.
+     *
+     * @param competition the competition
+     */
     public void setCompetition(Competition competition) {
         this.competition = competition;
     }
 
+    /**
+     * Gets time obtained seconds.
+     *
+     * @return the time obtained seconds
+     */
     public int getTimeObtainedSeconds() {
         return timeObtainedSeconds;
     }
 
+    /**
+     * Sets time obtained seconds.
+     *
+     * @param timeObtainedSeconds the time obtained seconds
+     */
     public void setTimeObtainedSeconds(int timeObtainedSeconds) {
         if (timeObtainedSeconds > 0) {
             this.timeObtainedSeconds = timeObtainedSeconds;
@@ -107,10 +161,20 @@ public class Result implements Serializable {
         throw new IllegalArgumentException("Time obtained must be greater than 0");
     }
 
+    /**
+     * Gets place.
+     *
+     * @return the place
+     */
     public int getPlace() {
         return place;
     }
 
+    /**
+     * Sets place.
+     *
+     * @param place the place
+     */
     public void setPlace(int place) {
         if (place > 0) {
             this.place = place;

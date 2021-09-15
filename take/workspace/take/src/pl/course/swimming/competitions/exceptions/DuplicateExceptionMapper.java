@@ -7,10 +7,11 @@ import javax.ws.rs.ext.Provider;
 
 /**
  * Mapper for DuplicateException
+ *
  * @version 1.0
  * @category ExceptionMapper
  * @see pl.course.swimming.competitions.exceptions.DuplicateException
- * */
+ */
 @Provider
 public class DuplicateExceptionMapper implements ExceptionMapper<DuplicateException> {
 

@@ -24,9 +24,10 @@ import java.util.Set;
 
 /**
  * Swimmer model
+ *
  * @version 1.0
  * @category POJO
- * */
+ */
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idc")
 public class Swimmer implements Serializable{
@@ -45,6 +46,9 @@ public class Swimmer implements Serializable{
 	@Column(nullable = false)
 	private String surname;
 	
+	/***
+	 * @warning Legal arguments are: M or W
+	 * */
 	@Basic
 	@Column(nullable = false)
 	private Character gender;
@@ -64,9 +68,17 @@ public class Swimmer implements Serializable{
 	@JsonIgnore
 	@OneToMany(mappedBy = "swimmer", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Result> results = new ArrayList<Result>();
-	
+
+	/**
+	 * Instantiates a new Swimmer.
+	 */
 	public Swimmer() {}
-	
+
+	/**
+	 * Instantiates a new Swimmer.
+	 *
+	 * @param swimmer the swimmer
+	 */
 	public Swimmer(Swimmer swimmer) {
 		this.idc = swimmer.getIdc();
 		this.name = swimmer.getName();
@@ -78,30 +90,65 @@ public class Swimmer implements Serializable{
 		this.results = swimmer.getResults();
 	}
 
+	/**
+	 * Gets idc.
+	 *
+	 * @return the idc
+	 */
 	public long getIdc() {
 		return this.idc;
 	}
-	
+
+	/**
+	 * Gets name.
+	 *
+	 * @return the name
+	 */
 	public String getName() {
 		return this.name;
 	}
-	
+
+	/**
+	 * Sets name.
+	 *
+	 * @param name the name
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
+	/**
+	 * Gets surname.
+	 *
+	 * @return the surname
+	 */
 	public String getSurname() {
 		return this.surname;
 	}
-	
+
+	/**
+	 * Sets surname.
+	 *
+	 * @param surname the surname
+	 */
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
-	
+
+	/**
+	 * Gets gender.
+	 *
+	 * @return the gender
+	 */
 	public Character getGender() {
 		return this.gender;
 	}
-	
+
+	/**
+	 * Set.
+	 *
+	 * @param gender the gender
+	 */
 	public void set(Character gender) {
 		if (gender.equals('M') || gender.equals('W')) {
 			this.gender = gender;
@@ -110,11 +157,21 @@ public class Swimmer implements Serializable{
 		
 		throw new IllegalArgumentException("Invalid gender value {M, W}");
 	}
-	
+
+	/**
+	 * Gets age.
+	 *
+	 * @return the age
+	 */
 	public int getAge() {
 		return this.age;
 	}
-	
+
+	/**
+	 * Sets age.
+	 *
+	 * @param age the age
+	 */
 	public void setAge(int age) {
 		if (age > 0) {
 			this.age = age;
@@ -123,37 +180,75 @@ public class Swimmer implements Serializable{
 		
 		throw new IllegalArgumentException("Age must be greather than 0");
 	}
-	
+
+	/**
+	 * Gets town.
+	 *
+	 * @return the town
+	 */
 	public String getTown() {
 		return this.town;
 	}
-	
+
+	/**
+	 * Sets town.
+	 *
+	 * @param town the town
+	 */
 	public void setTown(String town) {
 		this.town = town;
 	}
-	
+
+	/**
+	 * Gets phone number.
+	 *
+	 * @return the phone number
+	 */
 	public String getPhoneNumber() {
 		return this.phoneNumber;
 	}
-	
+
+	/**
+	 * Sets phone number.
+	 *
+	 * @param phoneNumber the phone number
+	 */
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	
+
+	/**
+	 * Gets results.
+	 *
+	 * @return the results
+	 */
 	public List<Result> getResults() {
     	return this.results;
 	}
-	
+
+	/**
+	 * Add result.
+	 *
+	 * @param result the result
+	 */
 	public void addResult(Result result) {
 		this.results.add(result);
 		result.setSwimmer(this);
 	}
-	
+
+	/**
+	 * Remove result.
+	 *
+	 * @param result the result
+	 */
 	public void removeResult(Result result) {
 		this.results.remove(result);
 		result.setSwimmer(null);
 	}
-	
+
+	/**
+	 * Validate.
+	 */
 	public void validate() {
 		if(this.age < 0)
 			throw new IllegalArgumentException("Age must be greather than 0");

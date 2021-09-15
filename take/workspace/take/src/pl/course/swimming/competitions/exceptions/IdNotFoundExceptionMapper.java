@@ -7,10 +7,10 @@ import javax.ws.rs.ext.Provider;
 
 /**
  * Mapper for IdNotFoundException
+ *
  * @version 1.0
- * @category ExceptionMapper
- *  * @see pl.course.swimming.competitions.exceptions.IdNotFoundException
- * */
+ * @category ExceptionMapper * @see pl.course.swimming.competitions.exceptions.IdNotFoundException
+ */
 @Provider
 public class IdNotFoundExceptionMapper implements ExceptionMapper<IdNotFoundException> {
 

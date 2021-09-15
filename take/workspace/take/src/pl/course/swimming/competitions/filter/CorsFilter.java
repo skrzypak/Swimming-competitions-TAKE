@@ -8,6 +8,9 @@ import javax.ws.rs.container.ContainerResponseFilter;
 
 import javax.ws.rs.ext.Provider;
 
+/**
+ * The type Cors filter.
+ */
 @Provider
 public class CorsFilter implements ContainerResponseFilter {
 

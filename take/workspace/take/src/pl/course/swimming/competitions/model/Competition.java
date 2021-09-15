@@ -26,9 +26,10 @@ import java.util.Set;
 
 /**
  * Competition model
+ *
  * @version 1.0
  * @category POJO
- * */
+ */
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idc")
 public class Competition implements Serializable {
@@ -59,10 +60,18 @@ public class Competition implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "competition", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Result> results = new ArrayList<Result>();
-    
-    public Competition() {}
-    
-    public Competition(Competition competition) {
+
+	/**
+	 * Instantiates a new Competition.
+	 */
+	public Competition() {}
+
+	/**
+	 * Instantiates a new Competition.
+	 *
+	 * @param competition the competition
+	 */
+	public Competition(Competition competition) {
 		this.idc = competition.getIdc();
 		this.name = competition.getName();
 		this.organizer = competition.getOrganizer();
@@ -71,51 +80,111 @@ public class Competition implements Serializable {
 		this.results = competition.getResults();
 	}
 
+	/**
+	 * Gets idc.
+	 *
+	 * @return the idc
+	 */
 	public long getIdc() {
         return idc;
     }
 
-    public String getName() {
+	/**
+	 * Gets name.
+	 *
+	 * @return the name
+	 */
+	public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+	/**
+	 * Sets name.
+	 *
+	 * @param name the name
+	 */
+	public void setName(String name) {
         this.name = name;
     }
 
-    public String getOrganizer() {
+	/**
+	 * Gets organizer.
+	 *
+	 * @return the organizer
+	 */
+	public String getOrganizer() {
         return organizer;
     }
 
-    public void setOrganizer(String organizer) {
+	/**
+	 * Sets organizer.
+	 *
+	 * @param organizer the organizer
+	 */
+	public void setOrganizer(String organizer) {
         this.organizer = organizer;
     }
 
-    public String getPlace() {
+	/**
+	 * Gets place.
+	 *
+	 * @return the place
+	 */
+	public String getPlace() {
         return place;
     }
 
-    public void setPlace(String place) {
+	/**
+	 * Sets place.
+	 *
+	 * @param place the place
+	 */
+	public void setPlace(String place) {
         this.place = place;
     }
 
-    public LocalDateTime getDateTime() {
+	/**
+	 * Gets date time.
+	 *
+	 * @return the date time
+	 */
+	public LocalDateTime getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(LocalDateTime dateTime) {
+	/**
+	 * Sets date time.
+	 *
+	 * @param dateTime the date time
+	 */
+	public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
     }
-    
-    public List<Result> getResults() {
+
+	/**
+	 * Gets results.
+	 *
+	 * @return the results
+	 */
+	public List<Result> getResults() {
 		return this.results;
 	}
-	
+
+	/**
+	 * Add result.
+	 *
+	 * @param result the result
+	 */
 	public void addResult(Result result) {
 		this.results.add(result);
 		result.setCompetition(this);
 	}
-	
+
+	/**
+	 * Remove result.
+	 *
+	 * @param result the result
+	 */
 	public void removeResult(Result result) {
 		this.results.remove(result);
 		result.setCompetition(null);
